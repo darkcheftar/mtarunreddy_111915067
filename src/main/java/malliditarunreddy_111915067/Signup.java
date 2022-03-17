@@ -24,32 +24,31 @@ public class Signup extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		
 	   
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		String employee_id_number = req.getParameter("employee_id_number");
+		String first_name = req.getParameter("first_name");
+		String last_name = req.getParameter("last_name");
+		String dob = req.getParameter("dob");
+		String contact_number = req.getParameter("contact_number");
 	   try
 	      {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+		   Class.forName("com.mysql.cj.jdbc.Driver");
 	        //registering type4 driver of oracle
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sample","root","");  
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cloudcomputinglab","root","");  
 			Statement stmt=con.createStatement();
-			  String q1="select id,password from login where uname='"+username+"';";
-			  System.out.println(q1);
-			        ResultSet rs=stmt.executeQuery(q1);
-			        if(rs.next()){
-			        	if(password.equals(rs.getString(2))) {
-			        		HttpSession session = req.getSession();
-			        		session.setAttribute("username", username);
-			        		session.setAttribute("id", rs.getInt(1));
-			        		res.sendRedirect("shop.jsp");
-			        	}else {
-			        		res.sendRedirect("login.jsp");
-			        	}
-			        }
+			  String q1="INSERT INTO `malliditarunreddy_111915067_detail` (`employee_id_number`, `first_name`, `last_name`, `dob`, `contact_number`) VALUES ('0', '"+first_name+"', '"+last_name+"', '"+dob+"', '"+contact_number+"');";
+			  
+			        int rs=stmt.executeUpdate(q1);
+			       
+			        if(rs>0)
+			        {
+			           System.out.println("Insert success");
+			           res.sendRedirect("login.jsp");  
+			       }
 			       else
 			       {
-			    	   res.sendRedirect("login.jsp");
-			       }
-			     con.close();
+			         System.out.println("Insert unsuccess");   
+			     }
+			        con.close();
 	      }
 	     catch(Exception e){ 
 	        System.out.println(e);

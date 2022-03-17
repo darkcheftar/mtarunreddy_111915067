@@ -7,11 +7,23 @@
 <title>My App | Login</title>
 </head>
 <body>
+<style>
+form{
+position:relative;
+margin:0 auto;
+width:500px;
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+#login{
+	grid-column-end:span 2;
+}
+</style>
 Login
 <form action="login" method="post">
-<input type="Text" name="username"/>
-<input type="password" name="password"/>
-<input type="submit" value="Login" />
+employeeid<input type="Text" name="username"/>
+password<input type="password" name="password"/>
+<input id="login" type="submit" value="Login" />
 </form>
 </body>
 </html>
