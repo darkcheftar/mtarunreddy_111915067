@@ -8,6 +8,8 @@
 </head>
 <body>
 <style>
+body{
+text-align:center;}
 form{
 position:relative;
 margin:0 auto;
